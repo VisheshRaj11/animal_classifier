@@ -4,6 +4,7 @@ from model_loader import get_model
 from utils import read_image
 import tensorflow as tf
 import numpy as np
+import os
 import uvicorn
 from med import get_medicine_suggestion  # 🔗 Link to Gemini
 
@@ -56,3 +57,7 @@ async def predict(
         "prediction": label,
         "medicine_suggestion": medicine_suggestion
     })
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=False)
