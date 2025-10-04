@@ -57,3 +57,7 @@ async def predict(
         "prediction": label,
         "medicine_suggestion": medicine_suggestion
     })
+# ✅ Railway deployment entry point
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))  # Railway sets this dynamically
+    uvicorn.run(app, host="0.0.0.0", port=port)
